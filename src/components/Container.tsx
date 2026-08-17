@@ -51,18 +51,18 @@ export function SectionHeader({
           }`}
         >
           {code && (
-            <span className="px-2 py-0.5 rounded bg-[#2563EB]/10 border border-[#2563EB]/30 font-semibold">
+            <span className="px-2.5 py-0.5 rounded-md bg-[#2563EB]/15 border border-[#2563EB]/40 font-bold">
               [{code}]
             </span>
           )}
-          {eyebrow && <span>{eyebrow}</span>}
+          {eyebrow && <span className="font-bold">{eyebrow}</span>}
         </div>
       )}
-      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[#F5F4EF] leading-[1.15]">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-[#F6F7F9] leading-[1.1]">
         {title}
       </h2>
       {description && (
-        <p className="mt-4 text-sm sm:text-base md:text-lg text-[#8D96A5] leading-relaxed">
+        <p className="mt-4 text-base sm:text-lg text-[#929CAA] leading-relaxed">
           {description}
         </p>
       )}

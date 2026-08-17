@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { siteConfig } from "@/data/siteConfig";
 import { 
   CheckCircle2, 
@@ -8,29 +8,28 @@ import {
   ArrowLeft, 
   Send, 
   Mail, 
-  Phone, 
-  MessageSquare,
-  ShieldCheck
+  Phone 
 } from "lucide-react";
 
+
 const buildTypes = [
-  "Website",
-  "Web Application / SaaS",
+  "High-Performance Website",
+  "SaaS Platform / Web App",
   "UI/UX Design & System",
-  "Backend / API Architecture",
-  "AI Chatbot / Copilot",
-  "Workflow Automation",
-  "Existing Product Improvement",
-  "Something Custom",
+  "Backend & API Gateway",
+  "Grounded AI Copilot / Chatbot",
+  "Workflow Automation Engine",
+  "Product Overhaul & Scaling",
+  "Custom Engineering Build",
 ];
 
 const stageOptions = [
-  "Just an idea / Concept",
-  "Requirements & Specs ready",
-  "UI/UX Design ready for code",
-  "Existing product needing overhaul",
-  "Need fullstack engineering help",
-  "Need workflow & API automation",
+  "Just an idea / Discovery phase",
+  "Specs & requirements documented",
+  "Figma design ready for frontend build",
+  "Existing codebase needing refactor",
+  "Need fullstack engineering sprint",
+  "Need API & workflow automation sync",
 ];
 
 const budgetRanges = [
@@ -38,15 +37,15 @@ const budgetRanges = [
   "$5,000 – $15,000 / ₹4L–₹12L",
   "$15,000 – $30,000 / ₹12L–₹25L",
   "$30,000+ / ₹25L+",
-  "Not decided yet",
+  "Flexible / Not decided yet",
 ];
 
 const timelineOptions = [
-  "ASAP (Urgent launch)",
+  "ASAP (Urgent 2–4 weeks)",
   "1 – 2 months",
   "2 – 4 months",
   "4+ months",
-  "Flexible / Ongoing partnership",
+  "Ongoing monthly partnership",
 ];
 
 export function MultiStepBriefForm({ initialType = "" }: { initialType?: string }) {
@@ -85,7 +84,7 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
   const validateStep = () => {
     const newErrors: Record<string, string> = {};
     if (step === 1 && selectedBuildTypes.length === 0) {
-      newErrors.buildTypes = "Please select at least one project category.";
+      newErrors.buildTypes = "Please select at least one project discipline.";
     }
     if (step === 2) {
       if (!projectName.trim()) newErrors.projectName = "Please enter your project or company name.";
@@ -124,11 +123,10 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (botField) return; // Silent discard bot submission
+    if (botField) return; // Discard bot submission
     if (!validateStep()) return;
 
     setIsSubmitting(true);
-    // Simulate instantaneous clean client receipt
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitted(true);
@@ -137,44 +135,44 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
 
   if (submitted) {
     return (
-      <div className="bg-[#0D1117] border border-white/10 rounded-2xl p-8 sm:p-12 text-center flex flex-col items-center gap-6 max-w-2xl mx-auto shadow-2xl">
-        <div className="w-16 h-16 rounded-full bg-[#10B981]/15 border border-[#10B981]/40 flex items-center justify-center text-[#10B981]">
+      <div className="bg-[#0D121A] border border-white/10 rounded-3xl p-8 sm:p-14 text-center flex flex-col items-center gap-6 max-w-2xl mx-auto shadow-2xl select-none">
+        <div className="w-16 h-16 rounded-2xl bg-[#10B981]/15 border border-[#10B981]/40 flex items-center justify-center text-[#10B981]">
           <CheckCircle2 className="w-8 h-8" />
         </div>
 
         <div>
-          <span className="text-xs font-mono-tech text-[#10B981] uppercase tracking-wider">
-            [TRANSMISSION CONFIRMED]
+          <span className="text-xs font-mono-tech text-[#10B981] uppercase tracking-wider font-bold">
+            [BRIEF TRANSMISSION CONFIRMED]
           </span>
-          <h3 className="text-2xl sm:text-3xl font-bold text-[#F5F4EF] mt-1">
-            Brief Received Successfully
+          <h3 className="text-2xl sm:text-3xl font-black text-[#F6F7F9] mt-2">
+            Project Brief Received
           </h3>
-          <p className="mt-3 text-sm text-[#8D96A5] leading-relaxed">
-            We will review what you are building and reply directly using the contact details you provided ({email}).
+          <p className="mt-3 text-sm text-[#929CAA] leading-relaxed">
+            We will review your requirements, evaluate architectural dependencies, and reply directly to <strong className="text-[#F6F7F9]">{email}</strong> within 24 business hours.
           </p>
         </div>
 
         {/* Direct Contact Cards */}
-        <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4 border-t border-white/10">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-3 pt-6 border-t border-white/10">
           <a
             href={siteConfig.contact.emailLink}
-            className="p-4 rounded-xl bg-[#070A0E] border border-white/10 hover:border-[#2563EB]/40 flex items-center gap-3 text-left transition-colors"
+            className="p-4 rounded-xl bg-[#070A0F] border border-white/10 hover:border-[#2563EB]/40 flex items-center gap-3 text-left transition-colors"
           >
             <Mail className="w-4 h-4 text-[#2B7FFF] shrink-0" />
             <div className="overflow-hidden">
-              <span className="text-[10px] font-mono-tech text-[#8D96A5] block uppercase">Direct Email</span>
-              <span className="text-xs text-[#F5F4EF] font-mono-tech truncate block">{siteConfig.contact.email}</span>
+              <span className="text-[10px] font-mono-tech text-[#929CAA] block uppercase font-bold">Direct Email</span>
+              <span className="text-xs text-[#F6F7F9] font-mono-tech truncate block">{siteConfig.contact.email}</span>
             </div>
           </a>
 
           <a
             href={siteConfig.contact.phoneLink}
-            className="p-4 rounded-xl bg-[#070A0E] border border-white/10 hover:border-[#2563EB]/40 flex items-center gap-3 text-left transition-colors"
+            className="p-4 rounded-xl bg-[#070A0F] border border-white/10 hover:border-[#2563EB]/40 flex items-center gap-3 text-left transition-colors"
           >
             <Phone className="w-4 h-4 text-[#2B7FFF] shrink-0" />
             <div>
-              <span className="text-[10px] font-mono-tech text-[#8D96A5] block uppercase">Call Direct</span>
-              <span className="text-xs text-[#F5F4EF] font-mono-tech block">{siteConfig.contact.phoneDisplay}</span>
+              <span className="text-[10px] font-mono-tech text-[#929CAA] block uppercase font-bold">Direct Call</span>
+              <span className="text-xs text-[#F6F7F9] font-mono-tech block">{siteConfig.contact.phoneDisplay}</span>
             </div>
           </a>
         </div>
@@ -184,7 +182,7 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
             setSubmitted(false);
             setStep(1);
           }}
-          className="text-xs font-mono-tech text-[#8D96A5] hover:text-[#2B7FFF] underline underline-offset-4"
+          className="text-xs font-mono-tech text-[#929CAA] hover:text-[#2B7FFF] underline underline-offset-4 cursor-pointer pt-2"
         >
           Submit another project brief
         </button>
@@ -193,7 +191,7 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
   }
 
   return (
-    <div className="w-full bg-[#0D1117] border border-white/10 rounded-2xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+    <div className="w-full bg-[#0D121A] border border-white/10 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-2xl relative overflow-hidden select-none">
       {/* Honeypot hidden input */}
       <input
         type="text"
@@ -208,10 +206,10 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
       {/* Progress Bar & Step Indicator */}
       <div className="mb-8 pb-6 border-b border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-center gap-2">
-          <span className="px-2.5 py-0.5 rounded bg-[#2563EB]/15 border border-[#2563EB]/40 text-xs font-mono-tech font-bold text-[#2B7FFF]">
+          <span className="px-3 py-1 rounded-md bg-[#2563EB]/15 border border-[#2563EB]/40 text-xs font-mono-tech font-bold text-[#2B7FFF]">
             STEP {String(step).padStart(2, "0")} / 06
           </span>
-          <span className="text-xs font-mono-tech text-[#8D96A5]">
+          <span className="text-xs font-mono-tech text-[#929CAA]">
             {step === 1 && "Category Selection"}
             {step === 2 && "Project Overview"}
             {step === 3 && "Current Stage"}
@@ -222,9 +220,9 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
         </div>
 
         {/* Visual Progress Track */}
-        <div className="w-full sm:w-48 h-2 bg-[#131923] rounded-full overflow-hidden">
+        <div className="w-full sm:w-48 h-2 bg-[#070A0F] rounded-full overflow-hidden">
           <div
-            className="h-full bg-gradient-to-r from-[#2563EB] to-[#2B7FFF] transition-all duration-300"
+            className="h-full bg-gradient-to-r from-[#2563EB] to-[#00D2FF] transition-all duration-300"
             style={{ width: `${(step / 6) * 100}%` }}
           />
         </div>
@@ -235,10 +233,10 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
         {step === 1 && (
           <div className="flex flex-col gap-6 animate-in fade-in duration-200">
             <div>
-              <h3 className="text-xl sm:text-2xl font-bold text-[#F5F4EF]">
+              <h3 className="text-2xl sm:text-3xl font-black text-[#F6F7F9] tracking-tight">
                 What can we help you build?
               </h3>
-              <p className="text-xs sm:text-sm text-[#8D96A5] mt-1">
+              <p className="text-xs sm:text-sm text-[#929CAA] mt-1">
                 Select one or multiple disciplines that apply to your requirements.
               </p>
             </div>
@@ -253,15 +251,15 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
                     onClick={() => toggleBuildType(type)}
                     className={`p-4 rounded-xl text-left transition-all flex items-center justify-between cursor-pointer ${
                       isSelected
-                        ? "bg-[#2563EB] text-white border border-[#3B82F6]/60 shadow-md shadow-[#2563EB]/25"
-                        : "bg-[#070A0E] text-[#8D96A5] hover:text-[#F5F4EF] hover:bg-[#131923] border border-white/10"
+                        ? "bg-[#2563EB] text-white border border-[#3B82F6]/60 shadow-[0_0_20px_rgba(37,99,235,0.35)]"
+                        : "bg-[#070A0F] text-[#929CAA] hover:text-[#F6F7F9] hover:bg-[#131A24] border border-white/10"
                     }`}
                   >
                     <span className="text-xs sm:text-sm font-semibold">{type}</span>
                     <div
                       className={`w-5 h-5 rounded-md border flex items-center justify-center text-xs ${
                         isSelected
-                          ? "border-white bg-white/20 text-white"
+                          ? "border-white bg-white/20 text-white font-bold"
                           : "border-white/20 text-transparent"
                       }`}
                     >
@@ -281,17 +279,17 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
         {step === 2 && (
           <div className="flex flex-col gap-6 animate-in fade-in duration-200">
             <div>
-              <h3 className="text-xl sm:text-2xl font-bold text-[#F5F4EF]">
+              <h3 className="text-2xl sm:text-3xl font-black text-[#F6F7F9] tracking-tight">
                 Tell us about the project
               </h3>
-              <p className="text-xs sm:text-sm text-[#8D96A5] mt-1">
+              <p className="text-xs sm:text-sm text-[#929CAA] mt-1">
                 Help us understand what your company or product aims to accomplish.
               </p>
             </div>
 
             <div className="flex flex-col gap-4">
               <div>
-                <label className="block text-xs font-mono-tech uppercase text-[#8D96A5] mb-2">
+                <label className="block text-xs font-mono-tech uppercase text-[#929CAA] mb-2 font-bold">
                   Project or Company Name *
                 </label>
                 <input
@@ -299,7 +297,7 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
                   placeholder="e.g. Acme Corp or Project Horizon"
                   value={projectName}
                   onChange={(e) => setProjectName(e.target.value)}
-                  className="w-full px-4 py-3 bg-[#070A0E] border border-white/10 rounded-lg text-sm text-[#F5F4EF] placeholder-[#8D96A5]/50 focus:border-[#2B7FFF] focus:outline-none"
+                  className="w-full px-4 py-3.5 bg-[#070A0F] border border-white/10 rounded-xl text-sm text-[#F6F7F9] placeholder-[#929CAA]/50 focus:border-[#2B7FFF] focus:outline-none"
                 />
                 {errors.projectName && (
                   <p className="text-xs text-[#EF4444] font-mono-tech mt-1">{errors.projectName}</p>
@@ -307,7 +305,7 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
               </div>
 
               <div>
-                <label className="block text-xs font-mono-tech uppercase text-[#8D96A5] mb-2">
+                <label className="block text-xs font-mono-tech uppercase text-[#929CAA] mb-2 font-bold">
                   Existing Website URL (Optional)
                 </label>
                 <input
@@ -315,12 +313,12 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
                   placeholder="https://example.com"
                   value={websiteUrl}
                   onChange={(e) => setWebsiteUrl(e.target.value)}
-                  className="w-full px-4 py-3 bg-[#070A0E] border border-white/10 rounded-lg text-sm text-[#F5F4EF] placeholder-[#8D96A5]/50 focus:border-[#2B7FFF] focus:outline-none"
+                  className="w-full px-4 py-3.5 bg-[#070A0F] border border-white/10 rounded-xl text-sm text-[#F6F7F9] placeholder-[#929CAA]/50 focus:border-[#2B7FFF] focus:outline-none"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-mono-tech uppercase text-[#8D96A5] mb-2">
+                <label className="block text-xs font-mono-tech uppercase text-[#929CAA] mb-2 font-bold">
                   Project Brief & Core Problems to Solve *
                 </label>
                 <textarea
@@ -328,7 +326,7 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
                   placeholder="Describe your requirements, core features, technical goals, and target users..."
                   value={projectDescription}
                   onChange={(e) => setProjectDescription(e.target.value)}
-                  className="w-full px-4 py-3 bg-[#070A0E] border border-white/10 rounded-lg text-sm text-[#F5F4EF] placeholder-[#8D96A5]/50 focus:border-[#2B7FFF] focus:outline-none"
+                  className="w-full px-4 py-3.5 bg-[#070A0F] border border-white/10 rounded-xl text-sm text-[#F6F7F9] placeholder-[#929CAA]/50 focus:border-[#2B7FFF] focus:outline-none"
                 />
                 {errors.projectDescription && (
                   <p className="text-xs text-[#EF4444] font-mono-tech mt-1">{errors.projectDescription}</p>
@@ -342,10 +340,10 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
         {step === 3 && (
           <div className="flex flex-col gap-6 animate-in fade-in duration-200">
             <div>
-              <h3 className="text-xl sm:text-2xl font-bold text-[#F5F4EF]">
+              <h3 className="text-2xl sm:text-3xl font-black text-[#F6F7F9] tracking-tight">
                 Where are you currently?
               </h3>
-              <p className="text-xs sm:text-sm text-[#8D96A5] mt-1">
+              <p className="text-xs sm:text-sm text-[#929CAA] mt-1">
                 Select the option that best reflects the project status today.
               </p>
             </div>
@@ -360,12 +358,12 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
                     onClick={() => setCurrentStage(stage)}
                     className={`p-4 rounded-xl text-left transition-all flex items-center justify-between cursor-pointer ${
                       isSelected
-                        ? "bg-[#2563EB] text-white border border-[#3B82F6]/60 shadow-md shadow-[#2563EB]/25"
-                        : "bg-[#070A0E] text-[#8D96A5] hover:text-[#F5F4EF] hover:bg-[#131923] border border-white/10"
+                        ? "bg-[#2563EB] text-white border border-[#3B82F6]/60 shadow-[0_0_20px_rgba(37,99,235,0.35)]"
+                        : "bg-[#070A0F] text-[#929CAA] hover:text-[#F6F7F9] hover:bg-[#131A24] border border-white/10"
                     }`}
                   >
                     <span className="text-xs sm:text-sm font-semibold">{stage}</span>
-                    <span className={`text-xs font-mono-tech ${isSelected ? "text-white" : "text-[#8D96A5]"}`}>
+                    <span className={`text-xs font-mono-tech font-bold ${isSelected ? "text-white" : "text-[#929CAA]"}`}>
                       {isSelected ? "● ACTIVE" : "○"}
                     </span>
                   </button>
@@ -382,10 +380,10 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
         {step === 4 && (
           <div className="flex flex-col gap-6 animate-in fade-in duration-200">
             <div>
-              <h3 className="text-xl sm:text-2xl font-bold text-[#F5F4EF]">
+              <h3 className="text-2xl sm:text-3xl font-black text-[#F6F7F9] tracking-tight">
                 Budget range
               </h3>
-              <p className="text-xs sm:text-sm text-[#8D96A5] mt-1">
+              <p className="text-xs sm:text-sm text-[#929CAA] mt-1">
                 This helps us calibrate the appropriate architectural depth and milestone structure.
               </p>
             </div>
@@ -400,12 +398,12 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
                     onClick={() => setBudgetRange(range)}
                     className={`p-4 rounded-xl text-left transition-all flex items-center justify-between cursor-pointer ${
                       isSelected
-                        ? "bg-[#2563EB] text-white border border-[#3B82F6]/60 shadow-md shadow-[#2563EB]/25"
-                        : "bg-[#070A0E] text-[#8D96A5] hover:text-[#F5F4EF] hover:bg-[#131923] border border-white/10"
+                        ? "bg-[#2563EB] text-white border border-[#3B82F6]/60 shadow-[0_0_20px_rgba(37,99,235,0.35)]"
+                        : "bg-[#070A0F] text-[#929CAA] hover:text-[#F6F7F9] hover:bg-[#131A24] border border-white/10"
                     }`}
                   >
                     <span className="text-xs sm:text-sm font-semibold">{range}</span>
-                    <span className={`text-xs font-mono-tech ${isSelected ? "text-white" : "text-[#8D96A5]"}`}>
+                    <span className={`text-xs font-mono-tech font-bold ${isSelected ? "text-white" : "text-[#929CAA]"}`}>
                       {isSelected ? "● SELECTED" : "○"}
                     </span>
                   </button>
@@ -422,10 +420,10 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
         {step === 5 && (
           <div className="flex flex-col gap-6 animate-in fade-in duration-200">
             <div>
-              <h3 className="text-xl sm:text-2xl font-bold text-[#F5F4EF]">
+              <h3 className="text-2xl sm:text-3xl font-black text-[#F6F7F9] tracking-tight">
                 Estimated timeline
               </h3>
-              <p className="text-xs sm:text-sm text-[#8D96A5] mt-1">
+              <p className="text-xs sm:text-sm text-[#929CAA] mt-1">
                 When would you ideally like this product or system to launch?
               </p>
             </div>
@@ -440,12 +438,12 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
                     onClick={() => setTimeline(time)}
                     className={`p-4 rounded-xl text-left transition-all flex items-center justify-between cursor-pointer ${
                       isSelected
-                        ? "bg-[#2563EB] text-white border border-[#3B82F6]/60 shadow-md shadow-[#2563EB]/25"
-                        : "bg-[#070A0E] text-[#8D96A5] hover:text-[#F5F4EF] hover:bg-[#131923] border border-white/10"
+                        ? "bg-[#2563EB] text-white border border-[#3B82F6]/60 shadow-[0_0_20px_rgba(37,99,235,0.35)]"
+                        : "bg-[#070A0F] text-[#929CAA] hover:text-[#F6F7F9] hover:bg-[#131A24] border border-white/10"
                     }`}
                   >
                     <span className="text-xs sm:text-sm font-semibold">{time}</span>
-                    <span className={`text-xs font-mono-tech ${isSelected ? "text-white" : "text-[#8D96A5]"}`}>
+                    <span className={`text-xs font-mono-tech font-bold ${isSelected ? "text-white" : "text-[#929CAA]"}`}>
                       {isSelected ? "● SELECTED" : "○"}
                     </span>
                   </button>
@@ -458,21 +456,21 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
           </div>
         )}
 
-        {/* STEP 6: Contact Details */}
+        {/* STEP 6: Contact Information */}
         {step === 6 && (
           <div className="flex flex-col gap-6 animate-in fade-in duration-200">
             <div>
-              <h3 className="text-xl sm:text-2xl font-bold text-[#F5F4EF]">
+              <h3 className="text-2xl sm:text-3xl font-black text-[#F6F7F9] tracking-tight">
                 Your Contact Information
               </h3>
-              <p className="text-xs sm:text-sm text-[#8D96A5] mt-1">
+              <p className="text-xs sm:text-sm text-[#929CAA] mt-1">
                 We will send our review and scoping proposal directly to this address.
               </p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-mono-tech uppercase text-[#8D96A5] mb-2">
+                <label className="block text-xs font-mono-tech uppercase text-[#929CAA] mb-2 font-bold">
                   Your Full Name *
                 </label>
                 <input
@@ -480,7 +478,7 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
                   placeholder="e.g. Alex Morgan"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full px-4 py-3 bg-[#070A0E] border border-white/10 rounded-lg text-sm text-[#F5F4EF] placeholder-[#8D96A5]/50 focus:border-[#2B7FFF] focus:outline-none"
+                  className="w-full px-4 py-3.5 bg-[#070A0F] border border-white/10 rounded-xl text-sm text-[#F6F7F9] placeholder-[#929CAA]/50 focus:border-[#2B7FFF] focus:outline-none"
                 />
                 {errors.name && (
                   <p className="text-xs text-[#EF4444] font-mono-tech mt-1">{errors.name}</p>
@@ -488,7 +486,7 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
               </div>
 
               <div>
-                <label className="block text-xs font-mono-tech uppercase text-[#8D96A5] mb-2">
+                <label className="block text-xs font-mono-tech uppercase text-[#929CAA] mb-2 font-bold">
                   Work Email *
                 </label>
                 <input
@@ -496,7 +494,7 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
                   placeholder="alex@company.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 bg-[#070A0E] border border-white/10 rounded-lg text-sm text-[#F5F4EF] placeholder-[#8D96A5]/50 focus:border-[#2B7FFF] focus:outline-none"
+                  className="w-full px-4 py-3.5 bg-[#070A0F] border border-white/10 rounded-xl text-sm text-[#F6F7F9] placeholder-[#929CAA]/50 focus:border-[#2B7FFF] focus:outline-none"
                 />
                 {errors.email && (
                   <p className="text-xs text-[#EF4444] font-mono-tech mt-1">{errors.email}</p>
@@ -504,7 +502,7 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
               </div>
 
               <div>
-                <label className="block text-xs font-mono-tech uppercase text-[#8D96A5] mb-2">
+                <label className="block text-xs font-mono-tech uppercase text-[#929CAA] mb-2 font-bold">
                   Phone / WhatsApp (Optional)
                 </label>
                 <input
@@ -512,12 +510,12 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
                   placeholder="+1 (555) 000-0000"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="w-full px-4 py-3 bg-[#070A0E] border border-white/10 rounded-lg text-sm text-[#F5F4EF] placeholder-[#8D96A5]/50 focus:border-[#2B7FFF] focus:outline-none"
+                  className="w-full px-4 py-3.5 bg-[#070A0F] border border-white/10 rounded-xl text-sm text-[#F6F7F9] placeholder-[#929CAA]/50 focus:border-[#2B7FFF] focus:outline-none"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-mono-tech uppercase text-[#8D96A5] mb-2">
+                <label className="block text-xs font-mono-tech uppercase text-[#929CAA] mb-2 font-bold">
                   Company / Organization
                 </label>
                 <input
@@ -525,12 +523,12 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
                   placeholder="Company Name"
                   value={company}
                   onChange={(e) => setCompany(e.target.value)}
-                  className="w-full px-4 py-3 bg-[#070A0E] border border-white/10 rounded-lg text-sm text-[#F5F4EF] placeholder-[#8D96A5]/50 focus:border-[#2B7FFF] focus:outline-none"
+                  className="w-full px-4 py-3.5 bg-[#070A0F] border border-white/10 rounded-xl text-sm text-[#F6F7F9] placeholder-[#929CAA]/50 focus:border-[#2B7FFF] focus:outline-none"
                 />
               </div>
 
               <div className="sm:col-span-2">
-                <label className="block text-xs font-mono-tech uppercase text-[#8D96A5] mb-2">
+                <label className="block text-xs font-mono-tech uppercase text-[#929CAA] mb-2 font-bold">
                   Country / Region *
                 </label>
                 <input
@@ -538,7 +536,7 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
                   placeholder="e.g. India, United States, United Kingdom, Singapore..."
                   value={country}
                   onChange={(e) => setCountry(e.target.value)}
-                  className="w-full px-4 py-3 bg-[#070A0E] border border-white/10 rounded-lg text-sm text-[#F5F4EF] placeholder-[#8D96A5]/50 focus:border-[#2B7FFF] focus:outline-none"
+                  className="w-full px-4 py-3.5 bg-[#070A0F] border border-white/10 rounded-xl text-sm text-[#F6F7F9] placeholder-[#929CAA]/50 focus:border-[#2B7FFF] focus:outline-none"
                 />
                 {errors.country && (
                   <p className="text-xs text-[#EF4444] font-mono-tech mt-1">{errors.country}</p>
@@ -554,7 +552,7 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
             <button
               type="button"
               onClick={prevStep}
-              className="px-5 py-3 rounded-lg bg-[#131923] hover:bg-[#1C2432] text-[#8D96A5] hover:text-[#F5F4EF] text-xs font-mono-tech uppercase tracking-wider flex items-center gap-2 border border-white/10 cursor-pointer"
+              className="px-5 py-3 rounded-xl bg-[#131A24] hover:bg-[#182131] text-[#929CAA] hover:text-[#F6F7F9] text-xs font-mono-tech uppercase font-bold tracking-wider flex items-center gap-2 border border-white/10 cursor-pointer"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Previous</span>
@@ -567,7 +565,7 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
             <button
               type="button"
               onClick={nextStep}
-              className="px-6 py-3 bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs font-mono-tech uppercase font-semibold tracking-wider rounded-lg flex items-center gap-2 transition-all shadow-[0_4px_15px_rgba(37,99,235,0.4)] cursor-pointer"
+              className="px-6 py-3.5 bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs font-mono-tech uppercase font-bold tracking-wider rounded-xl flex items-center gap-2 transition-all shadow-[0_0_20px_rgba(37,99,235,0.4)] cursor-pointer"
             >
               <span>Continue</span>
               <ArrowRight className="w-4 h-4" />
@@ -576,7 +574,7 @@ export function MultiStepBriefForm({ initialType = "" }: { initialType?: string 
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-7 py-3.5 bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs font-mono-tech uppercase font-semibold tracking-wider rounded-lg flex items-center gap-2 transition-all shadow-[0_4px_20px_rgba(37,99,235,0.5)] cursor-pointer disabled:opacity-50"
+              className="px-7 py-3.5 bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs font-mono-tech uppercase font-bold tracking-wider rounded-xl flex items-center gap-2 transition-all shadow-[0_0_30px_rgba(37,99,235,0.5)] cursor-pointer disabled:opacity-50"
             >
               <Send className="w-4 h-4" />
               <span>{isSubmitting ? "Transmitting..." : "Send Project Brief"}</span>

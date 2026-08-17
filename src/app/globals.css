@@ -1,35 +1,40 @@
 @import "tailwindcss";
 
 :root {
-  --bg-ink: #070a0e;
-  --bg-graphite: #0d1117;
-  --bg-elevated: #131923;
-  --text-primary: #f5f4ef;
-  --text-muted: #8d96a5;
+  --bg-ink: #070A0F;
+  --bg-secondary: #0D121A;
+  --bg-elevated: #131A24;
+  --bg-soft: #182131;
+  --text-main: #F6F7F9;
+  --text-muted: #929CAA;
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-active: rgba(255, 255, 255, 0.18);
-  --accent-blue: #2563eb;
-  --accent-blue-bright: #2b7fff;
-  --accent-blue-glow: rgba(37, 99, 235, 0.25);
-  --accent-green: #10b981;
+  --border-blue: rgba(37, 99, 235, 0.4);
+  --accent-blue: #2563EB;
+  --accent-blue-bright: #2B7FFF;
+  --accent-blue-glow: rgba(37, 99, 235, 0.35);
+  --accent-cyan: #00D2FF;
+  --accent-green: #10B981;
+  --accent-amber: #F59E0B;
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, Monaco, Consolas, monospace;
 }
 
 @theme {
-  --color-ink: #070a0e;
-  --color-graphite: #0d1117;
-  --color-elevated: #131923;
-  --color-offwhite: #f5f4ef;
-  --color-muted: #8d96a5;
-  --color-sbblue: #2563eb;
-  --color-sbblue-bright: #2b7fff;
-  --color-sbgreen: #10b981;
+  --color-ink: #070A0F;
+  --color-secondary: #0D121A;
+  --color-elevated: #131A24;
+  --color-soft: #182131;
+  --color-main: #F6F7F9;
+  --color-muted: #929CAA;
+  --color-sbblue: #2563EB;
+  --color-sbblue-bright: #2B7FFF;
+  --color-sbgreen: #10B981;
 }
 
 html {
   background-color: var(--bg-ink);
-  color: var(--text-primary);
+  color: var(--text-main);
   color-scheme: dark;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
@@ -38,7 +43,7 @@ html {
 
 body {
   background-color: var(--bg-ink);
-  color: var(--text-primary);
+  color: var(--text-main);
   font-family: var(--font-sans);
   overflow-x: hidden;
   min-height: 100vh;
@@ -55,45 +60,75 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1c2432;
+  background: #182131;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #2b7fff;
+  background: #2B7FFF;
 }
 
-/* Byte Grid Background */
-.byte-grid-bg {
+/* Forge Blueprint Grids */
+.forge-grid {
   background-size: 32px 32px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
 }
 
-.byte-grid-dense {
+.forge-grid-dense {
   background-size: 16px 16px;
   background-image: 
-    linear-gradient(to right, rgba(37, 99, 235, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(37, 99, 235, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(37, 99, 235, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(37, 99, 235, 0.08) 1px, transparent 1px);
 }
 
-/* Subtle Corner Notch */
-.corner-notch {
-  clip-path: polygon(
-    0 0,
-    calc(100% - 10px) 0,
-    100% 10px,
-    100% 100%,
-    10px 100%,
-    0 calc(100% - 10px)
-  );
+.forge-dots {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
 }
 
-/* Monospace labels */
+/* Glowing Border Utilities */
+.glow-border {
+  border-color: rgba(37, 99, 235, 0.35);
+  box-shadow: 0 0 25px rgba(37, 99, 235, 0.15);
+}
+
+.glow-border-hover:hover {
+  border-color: rgba(43, 127, 255, 0.6);
+  box-shadow: 0 0 30px rgba(37, 99, 235, 0.25);
+}
+
+/* Monospace technical typography */
 .font-mono-tech {
   font-family: var(--font-mono);
   letter-spacing: 0.05em;
+}
+
+/* Infinite Marquee Animation */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Pulse Beacon */
+@keyframes forgePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.95); }
+}
+
+.animate-forge-pulse {
+  animation: forgePulse 3s ease-in-out infinite;
 }
 
 /* Focus states for accessibility */

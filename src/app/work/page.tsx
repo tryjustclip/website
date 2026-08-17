@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import { projectsData, CaseStudy } from "@/data/projects";
-import { Container, SectionHeader } from "@/components/Container";
+import React, { useState } from "react";
+import { projectsData } from "@/data/projects";
+
+import { Container } from "@/components/Container";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Button } from "@/components/Button";
 
@@ -27,27 +28,25 @@ export default function WorkPage() {
       : projectsData.filter((p) => p.category === activeFilter);
 
   return (
-    <div className="py-12 sm:py-16 flex flex-col gap-12 sm:gap-16">
+    <div className="py-12 sm:py-16 flex flex-col gap-12 sm:gap-16 select-none">
       <Container size="lg">
         {/* Header */}
         <div className="max-w-3xl">
-          <div className="flex items-center gap-2 text-xs font-mono-tech text-[#2B7FFF] uppercase tracking-wider mb-2">
-            <span className="px-2 py-0.5 rounded bg-[#2563EB]/10 border border-[#2563EB]/30 font-semibold">
-              [PORTFOLIO]
-            </span>
-            <span>PROVEN DIGITAL BUILDS</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#131A24] border border-white/10 text-xs font-mono-tech text-[#2B7FFF] uppercase tracking-wider mb-4">
+            <span className="w-2 h-2 rounded-full bg-[#2563EB] animate-pulse" />
+            <span>PORTFOLIO SPECIFICATIONS</span>
           </div>
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-[#F5F4EF] tracking-tight">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-[#F6F7F9] tracking-tight">
             Work made to work.
           </h1>
-          <p className="mt-4 text-base sm:text-lg text-[#8D96A5] leading-relaxed">
-            Selected interfaces, products and technical systems designed and engineered by Stickbyte. Every project is built around measurable technical requirements.
+          <p className="mt-4 text-base sm:text-lg text-[#929CAA] leading-relaxed">
+            Selected interfaces, products and technical systems designed and engineered by Stickbyte. Every project is built around measurable technical requirements and verified deliverables.
           </p>
         </div>
 
         {/* Filter Pills */}
         <div className="mt-10 flex flex-wrap items-center gap-2 border-y border-white/10 py-4">
-          <span className="text-[11px] font-mono-tech text-[#8D96A5] uppercase tracking-wider mr-2 hidden sm:inline">
+          <span className="text-[11px] font-mono-tech text-[#929CAA] uppercase tracking-wider mr-2 hidden sm:inline font-bold">
             FILTER:
           </span>
           {categories.map((cat) => {
@@ -56,10 +55,10 @@ export default function WorkPage() {
               <button
                 key={cat}
                 onClick={() => setActiveFilter(cat)}
-                className={`px-3.5 py-1.5 rounded-md text-xs font-mono-tech uppercase tracking-wider transition-all duration-200 cursor-pointer ${
+                className={`px-4 py-2 rounded-xl text-xs font-mono-tech uppercase font-bold tracking-wider transition-all duration-200 cursor-pointer ${
                   isActive
-                    ? "bg-[#2563EB] text-white font-semibold shadow-md shadow-[#2563EB]/30"
-                    : "bg-[#0D1117] text-[#8D96A5] hover:text-[#F5F4EF] border border-white/10"
+                    ? "bg-[#2563EB] text-white shadow-md shadow-[#2563EB]/40 border border-[#3B82F6]/50"
+                    : "bg-[#0D121A] text-[#929CAA] hover:text-[#F6F7F9] border border-white/10"
                 }`}
               >
                 {cat}
@@ -80,12 +79,12 @@ export default function WorkPage() {
         </div>
 
         {/* Bottom Callout */}
-        <div className="mt-16 p-8 rounded-2xl bg-[#0D1117] border border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="mt-16 p-8 sm:p-12 rounded-3xl bg-[#0D121A] border border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
           <div>
-            <h3 className="text-lg font-bold text-[#F5F4EF]">
+            <h3 className="text-xl font-bold text-[#F6F7F9]">
               Need a custom build tailored to your business?
             </h3>
-            <p className="text-xs sm:text-sm text-[#8D96A5] mt-1">
+            <p className="text-sm text-[#929CAA] mt-1">
               We engineer custom SaaS, web portals, APIs and automated workflows.
             </p>
           </div>
